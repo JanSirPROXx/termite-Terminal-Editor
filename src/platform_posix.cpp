@@ -49,13 +49,19 @@ namespace termite::platform
         // c_lflag -> visual flags.
         t.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
         // read behavior control
-        t.c_cc[VMIN] = 1;
-        t.c_cc[VTIME] = 0;
+    // Allow detecting lone ESC by using a short timeout
+    t.c_cc[VMIN] = 0;
+    t.c_cc[VTIME] = 1; // 100ms
         if (tcsetattr(STDIN_FILENO, TCSAFLUSH, &t) == -1)
             return false;
+
+        // Enable alternate screen buffer to prevent scrolling
+        std::printf("\033[?1049h");
+        std::fflush(stdout);
+
         // setup signal to make sure terminal gets restored if user interupts
         std::signal(SIGINT, on_sigint);
-        //restore terminal if application ends normally
+        // restore terminal if application ends normally
         std::atexit(restore);
         raw = true;
         return true;

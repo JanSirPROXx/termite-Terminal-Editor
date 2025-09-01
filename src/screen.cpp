@@ -43,11 +43,21 @@ void Screen::draw_status(const std::string& status) {
     write(ansi::RESET);
 }
 
-Size Screen::size() const {
-    auto szOpt = platform::window_size();
-    if (szOpt) return {szOpt->rows, szOpt->cols};
-    return {};
+void Screen::draw_line_numbers(std::size_t line_size)
+{
+    for(std::size_t i = 0; i < line_size; ++i){
+        move_cursor(i, 0);
+        write(ansi::color256(245));
+        write(std::to_string(i));
+    }
+    write(ansi::RESET);
+}
+Size Screen::size() const
+{
+  auto szOpt = platform::window_size();
+  if (szOpt)
+    return {szOpt->rows, szOpt->cols};
+  return {};
 }
 
 } // namespace termite
-

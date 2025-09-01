@@ -97,10 +97,38 @@ CMakeFiles/termite.dir/src/editor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/termite.dir/src/editor.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lance/Documents/coding/termite/src/editor.cpp -o CMakeFiles/termite.dir/src/editor.cpp.s
 
+CMakeFiles/termite.dir/src/editor_render.cpp.o: CMakeFiles/termite.dir/flags.make
+CMakeFiles/termite.dir/src/editor_render.cpp.o: src/editor_render.cpp
+CMakeFiles/termite.dir/src/editor_render.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/termite.dir/src/editor_render.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/editor_render.cpp.o -MF CMakeFiles/termite.dir/src/editor_render.cpp.o.d -o CMakeFiles/termite.dir/src/editor_render.cpp.o -c /home/lance/Documents/coding/termite/src/editor_render.cpp
+
+CMakeFiles/termite.dir/src/editor_render.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/termite.dir/src/editor_render.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lance/Documents/coding/termite/src/editor_render.cpp > CMakeFiles/termite.dir/src/editor_render.cpp.i
+
+CMakeFiles/termite.dir/src/editor_render.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/termite.dir/src/editor_render.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lance/Documents/coding/termite/src/editor_render.cpp -o CMakeFiles/termite.dir/src/editor_render.cpp.s
+
+CMakeFiles/termite.dir/src/editor_input.cpp.o: CMakeFiles/termite.dir/flags.make
+CMakeFiles/termite.dir/src/editor_input.cpp.o: src/editor_input.cpp
+CMakeFiles/termite.dir/src/editor_input.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/termite.dir/src/editor_input.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/editor_input.cpp.o -MF CMakeFiles/termite.dir/src/editor_input.cpp.o.d -o CMakeFiles/termite.dir/src/editor_input.cpp.o -c /home/lance/Documents/coding/termite/src/editor_input.cpp
+
+CMakeFiles/termite.dir/src/editor_input.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/termite.dir/src/editor_input.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/lance/Documents/coding/termite/src/editor_input.cpp > CMakeFiles/termite.dir/src/editor_input.cpp.i
+
+CMakeFiles/termite.dir/src/editor_input.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/termite.dir/src/editor_input.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/lance/Documents/coding/termite/src/editor_input.cpp -o CMakeFiles/termite.dir/src/editor_input.cpp.s
+
 CMakeFiles/termite.dir/src/buffer.cpp.o: CMakeFiles/termite.dir/flags.make
 CMakeFiles/termite.dir/src/buffer.cpp.o: src/buffer.cpp
 CMakeFiles/termite.dir/src/buffer.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/termite.dir/src/buffer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/termite.dir/src/buffer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/buffer.cpp.o -MF CMakeFiles/termite.dir/src/buffer.cpp.o.d -o CMakeFiles/termite.dir/src/buffer.cpp.o -c /home/lance/Documents/coding/termite/src/buffer.cpp
 
 CMakeFiles/termite.dir/src/buffer.cpp.i: cmake_force
@@ -114,7 +142,7 @@ CMakeFiles/termite.dir/src/buffer.cpp.s: cmake_force
 CMakeFiles/termite.dir/src/gap_buffer.cpp.o: CMakeFiles/termite.dir/flags.make
 CMakeFiles/termite.dir/src/gap_buffer.cpp.o: src/gap_buffer.cpp
 CMakeFiles/termite.dir/src/gap_buffer.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/termite.dir/src/gap_buffer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/termite.dir/src/gap_buffer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/gap_buffer.cpp.o -MF CMakeFiles/termite.dir/src/gap_buffer.cpp.o.d -o CMakeFiles/termite.dir/src/gap_buffer.cpp.o -c /home/lance/Documents/coding/termite/src/gap_buffer.cpp
 
 CMakeFiles/termite.dir/src/gap_buffer.cpp.i: cmake_force
@@ -128,7 +156,7 @@ CMakeFiles/termite.dir/src/gap_buffer.cpp.s: cmake_force
 CMakeFiles/termite.dir/src/screen.cpp.o: CMakeFiles/termite.dir/flags.make
 CMakeFiles/termite.dir/src/screen.cpp.o: src/screen.cpp
 CMakeFiles/termite.dir/src/screen.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/termite.dir/src/screen.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/termite.dir/src/screen.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/screen.cpp.o -MF CMakeFiles/termite.dir/src/screen.cpp.o.d -o CMakeFiles/termite.dir/src/screen.cpp.o -c /home/lance/Documents/coding/termite/src/screen.cpp
 
 CMakeFiles/termite.dir/src/screen.cpp.i: cmake_force
@@ -142,7 +170,7 @@ CMakeFiles/termite.dir/src/screen.cpp.s: cmake_force
 CMakeFiles/termite.dir/src/input.cpp.o: CMakeFiles/termite.dir/flags.make
 CMakeFiles/termite.dir/src/input.cpp.o: src/input.cpp
 CMakeFiles/termite.dir/src/input.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/termite.dir/src/input.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/termite.dir/src/input.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/input.cpp.o -MF CMakeFiles/termite.dir/src/input.cpp.o.d -o CMakeFiles/termite.dir/src/input.cpp.o -c /home/lance/Documents/coding/termite/src/input.cpp
 
 CMakeFiles/termite.dir/src/input.cpp.i: cmake_force
@@ -156,7 +184,7 @@ CMakeFiles/termite.dir/src/input.cpp.s: cmake_force
 CMakeFiles/termite.dir/src/file_io.cpp.o: CMakeFiles/termite.dir/flags.make
 CMakeFiles/termite.dir/src/file_io.cpp.o: src/file_io.cpp
 CMakeFiles/termite.dir/src/file_io.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/termite.dir/src/file_io.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/termite.dir/src/file_io.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/file_io.cpp.o -MF CMakeFiles/termite.dir/src/file_io.cpp.o.d -o CMakeFiles/termite.dir/src/file_io.cpp.o -c /home/lance/Documents/coding/termite/src/file_io.cpp
 
 CMakeFiles/termite.dir/src/file_io.cpp.i: cmake_force
@@ -170,7 +198,7 @@ CMakeFiles/termite.dir/src/file_io.cpp.s: cmake_force
 CMakeFiles/termite.dir/src/platform_posix.cpp.o: CMakeFiles/termite.dir/flags.make
 CMakeFiles/termite.dir/src/platform_posix.cpp.o: src/platform_posix.cpp
 CMakeFiles/termite.dir/src/platform_posix.cpp.o: CMakeFiles/termite.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/termite.dir/src/platform_posix.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/termite.dir/src/platform_posix.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/termite.dir/src/platform_posix.cpp.o -MF CMakeFiles/termite.dir/src/platform_posix.cpp.o.d -o CMakeFiles/termite.dir/src/platform_posix.cpp.o -c /home/lance/Documents/coding/termite/src/platform_posix.cpp
 
 CMakeFiles/termite.dir/src/platform_posix.cpp.i: cmake_force
@@ -185,6 +213,8 @@ CMakeFiles/termite.dir/src/platform_posix.cpp.s: cmake_force
 termite_OBJECTS = \
 "CMakeFiles/termite.dir/src/main.cpp.o" \
 "CMakeFiles/termite.dir/src/editor.cpp.o" \
+"CMakeFiles/termite.dir/src/editor_render.cpp.o" \
+"CMakeFiles/termite.dir/src/editor_input.cpp.o" \
 "CMakeFiles/termite.dir/src/buffer.cpp.o" \
 "CMakeFiles/termite.dir/src/gap_buffer.cpp.o" \
 "CMakeFiles/termite.dir/src/screen.cpp.o" \
@@ -197,6 +227,8 @@ termite_EXTERNAL_OBJECTS =
 
 termite: CMakeFiles/termite.dir/src/main.cpp.o
 termite: CMakeFiles/termite.dir/src/editor.cpp.o
+termite: CMakeFiles/termite.dir/src/editor_render.cpp.o
+termite: CMakeFiles/termite.dir/src/editor_input.cpp.o
 termite: CMakeFiles/termite.dir/src/buffer.cpp.o
 termite: CMakeFiles/termite.dir/src/gap_buffer.cpp.o
 termite: CMakeFiles/termite.dir/src/screen.cpp.o
@@ -205,7 +237,7 @@ termite: CMakeFiles/termite.dir/src/file_io.cpp.o
 termite: CMakeFiles/termite.dir/src/platform_posix.cpp.o
 termite: CMakeFiles/termite.dir/build.make
 termite: CMakeFiles/termite.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable termite"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable termite"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/termite.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -81,12 +81,12 @@ clean: CMakeFiles/termite.dir/clean
 CMakeFiles/termite.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/termite.dir/build.make CMakeFiles/termite.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/termite.dir/build.make CMakeFiles/termite.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9 "Built target termite"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/lance/Documents/coding/termite/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11 "Built target termite"
 .PHONY : CMakeFiles/termite.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/termite.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/lance/Documents/coding/termite/CMakeFiles 9
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/lance/Documents/coding/termite/CMakeFiles 11
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/termite.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/lance/Documents/coding/termite/CMakeFiles 0
 .PHONY : CMakeFiles/termite.dir/rule

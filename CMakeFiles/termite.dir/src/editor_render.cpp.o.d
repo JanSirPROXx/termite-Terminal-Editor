@@ -1,5 +1,5 @@
-CMakeFiles/termite.dir/src/editor.cpp.o: \
- /home/lance/Documents/coding/termite/src/editor.cpp \
+CMakeFiles/termite.dir/src/editor_render.cpp.o: \
+ /home/lance/Documents/coding/termite/src/editor_render.cpp \
  /usr/include/stdc-predef.h \
  /home/lance/Documents/coding/termite/include/termite/editor.hpp \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/memoryfwd.h \
@@ -201,16 +201,25 @@ CMakeFiles/termite.dir/src/editor.cpp.o: \
  /usr/include/c++/13/bits/vector.tcc \
  /home/lance/Documents/coding/termite/include/termite/screen.hpp \
  /home/lance/Documents/coding/termite/include/termite/buffer.hpp \
- /home/lance/Documents/coding/termite/include/termite/input.hpp \
- /home/lance/Documents/coding/termite/include/termite/file_io.hpp \
- /home/lance/Documents/coding/termite/include/termite/platform.hpp \
- /usr/include/c++/13/optional \
- /usr/include/c++/13/bits/enable_special_members.h \
- /usr/include/c++/13/iostream /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/algorithm \
- /usr/include/c++/13/bits/stl_algo.h \
+ /home/lance/Documents/coding/termite/include/termite/ansi.hpp \
+ /usr/include/c++/13/algorithm /usr/include/c++/13/bits/stl_algo.h \
  /usr/include/c++/13/bits/algorithmfwd.h \
  /usr/include/c++/13/bits/stl_heap.h \
  /usr/include/c++/13/bits/uniform_int_dist.h \
  /usr/include/c++/13/bits/ranges_algo.h \
- /usr/include/c++/13/pstl/glue_algorithm_defs.h
+ /usr/include/c++/13/pstl/glue_algorithm_defs.h \
+ /usr/include/x86_64-linux-gnu/sys/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/stat.h \
+ /usr/include/x86_64-linux-gnu/bits/struct_stat.h \
+ /usr/include/x86_64-linux-gnu/bits/statx.h /usr/include/linux/stat.h \
+ /usr/include/linux/types.h /usr/include/x86_64-linux-gnu/asm/types.h \
+ /usr/include/asm-generic/types.h /usr/include/asm-generic/int-ll64.h \
+ /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+ /usr/include/asm-generic/bitsperlong.h /usr/include/linux/posix_types.h \
+ /usr/include/linux/stddef.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+ /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+ /usr/include/asm-generic/posix_types.h \
+ /usr/include/x86_64-linux-gnu/bits/statx-generic.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx_timestamp.h \
+ /usr/include/x86_64-linux-gnu/bits/types/struct_statx.h

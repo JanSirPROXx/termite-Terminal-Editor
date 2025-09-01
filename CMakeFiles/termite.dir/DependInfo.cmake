@@ -10,6 +10,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/lance/Documents/coding/termite/src/buffer.cpp" "CMakeFiles/termite.dir/src/buffer.cpp.o" "gcc" "CMakeFiles/termite.dir/src/buffer.cpp.o.d"
   "/home/lance/Documents/coding/termite/src/editor.cpp" "CMakeFiles/termite.dir/src/editor.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor.cpp.o.d"
+  "/home/lance/Documents/coding/termite/src/editor_input.cpp" "CMakeFiles/termite.dir/src/editor_input.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor_input.cpp.o.d"
+  "/home/lance/Documents/coding/termite/src/editor_render.cpp" "CMakeFiles/termite.dir/src/editor_render.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor_render.cpp.o.d"
   "/home/lance/Documents/coding/termite/src/file_io.cpp" "CMakeFiles/termite.dir/src/file_io.cpp.o" "gcc" "CMakeFiles/termite.dir/src/file_io.cpp.o.d"
   "/home/lance/Documents/coding/termite/src/gap_buffer.cpp" "CMakeFiles/termite.dir/src/gap_buffer.cpp.o" "gcc" "CMakeFiles/termite.dir/src/gap_buffer.cpp.o.d"
   "/home/lance/Documents/coding/termite/src/input.cpp" "CMakeFiles/termite.dir/src/input.cpp.o" "gcc" "CMakeFiles/termite.dir/src/input.cpp.o.d"

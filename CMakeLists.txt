@@ -11,6 +11,8 @@ option(TERMIT_ENABLE_WARNINGS "Enable strict warnings" ON)
 set(TERMITE_SOURCES
     src/main.cpp
     src/editor.cpp
+    src/editor_render.cpp
+    src/editor_input.cpp
     src/buffer.cpp
     src/gap_buffer.cpp
     src/screen.cpp
@@ -29,6 +31,9 @@ add_executable(termite ${TERMITE_SOURCES})
 
 target_include_directories(termite PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
+# Expose version to the code
+target_compile_definitions(termite PRIVATE TERMITE_VERSION="0.1")
+
 if(TERMIT_ENABLE_WARNINGS)
     if(MSVC)
         target_compile_options(termite PRIVATE /W4 /permissive-)
@@ -41,4 +46,3 @@ if(UNIX AND NOT APPLE)
     # Link against termcap-like libraries if needed; commonly not necessary for raw termios
     # target_link_libraries(termite PRIVATE tinfo ncurses)
 endif()
-
