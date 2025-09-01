@@ -206,5 +206,12 @@ CMakeFiles/termite.dir/src/editor.cpp.o: \
  /home/lance/Documents/coding/termite/include/termite/platform.hpp \
  /usr/include/c++/13/optional \
  /usr/include/c++/13/bits/enable_special_members.h \
+ /home/lance/Documents/coding/termite/include/termite/ansi.hpp \
  /usr/include/c++/13/iostream /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc
+ /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/algorithm \
+ /usr/include/c++/13/bits/stl_algo.h \
+ /usr/include/c++/13/bits/algorithmfwd.h \
+ /usr/include/c++/13/bits/stl_heap.h \
+ /usr/include/c++/13/bits/uniform_int_dist.h \
+ /usr/include/c++/13/bits/ranges_algo.h \
+ /usr/include/c++/13/pstl/glue_algorithm_defs.h

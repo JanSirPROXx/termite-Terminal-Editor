@@ -19,6 +19,7 @@ void Screen::clear() {
 
 void Screen::move_cursor(int row, int col) {
     auto seq = ansi::cursor_pos(row, col);
+    //low level terminal output
     std::fwrite(seq.c_str(), 1, seq.size(), stdout);
 }
 
