@@ -1,0 +1,3 @@
+/home/lance/Documents/coding/termite/CMakeFiles/termite.dir
+/home/lance/Documents/coding/termite/CMakeFiles/edit_cache.dir
+/home/lance/Documents/coding/termite/CMakeFiles/rebuild_cache.dir
