@@ -33,7 +33,7 @@ void Editor::open_file_if_provided(int argc, char** argv) {
     if (argc > 1 && argv[1] && argv[1][0] != '\0') {
         try {
             auto contents = file_io::read_file(argv[1]);
-            buffer_->set_contents(std::move(contents));
+            buffer_->set_contents(std::move(contents)); //move is more performant the copy
             status_ = std::string("Opened: ") + argv[1];
             filename_ = argv[1];
             modified_ = false;

@@ -103,6 +103,11 @@ bool Editor::handle_input(int key)
         start_search();
         return true;
     }
+    if (key == input::KEY_CTRL_V)
+    {
+        paste_from_clipboard();
+        return true;
+    }
     // While in search mode, Up/Down navigate results
     if (searching_ && (key == input::KEY_UP || key == input::KEY_DOWN))
     {
@@ -118,6 +123,11 @@ bool Editor::handle_input(int key)
     if (key == input::KEY_CTRL_Q)
     {
         return false;
+    }
+    if (key == input::KEY_CTRL_C)
+    {
+        copy_selection_to_clipboard();
+        return true;
     }
     if (key == input::KEY_CTRL_S)
     {
@@ -143,10 +153,7 @@ bool Editor::handle_input(int key)
             status_ = std::string("Save failed: ") + target;
         }
     }
-    if (key == input::KEY_CTRL_C)
-    {
-        return false;
-    }
+    // Do not quit on Ctrl+C; it's used for copy
     const auto &lines = buffer_->lines();
     auto clamp_col_to_line = [&](int y)
     {
@@ -187,6 +194,10 @@ bool Editor::handle_input(int key)
         if (cy_ >= 1 && cy_ <= (int)lines.size())
             cx_ = (int)lines[cy_ - 1].size() + 1;
         break;
+    case input::KEY_CTRL_HOME:
+        cy_ = 1; cx_ = 1; break;
+    case input::KEY_CTRL_END:
+        cy_ = (int)lines.size(); cx_ = (cy_ >= 1 ? (int)lines[cy_-1].size() + 1 : 1); break;
     case input::KEY_LEFT:
         if (cx_ > 1)
         {
@@ -411,9 +422,16 @@ bool Editor::handle_input(int key)
         int row = cy_ - 1; if (row < 0) row = 0; int col = cx_ - 1;
         const auto& s = buffer_->lines()[row];
         auto is_word = [](char ch){ return std::isalnum((unsigned char)ch) || ch == '_'; };
-        if (col > (int)s.size()) col = (int)s.size(); if (col > 0) col--;
-        while (col > 0 && std::isspace((unsigned char)s[col])) col--;
-        while (col > 0 && is_word(s[col-1])) col--;
+        auto is_space = [](char ch){ return std::isspace((unsigned char)ch); };
+        auto is_punct = [&](char ch){ return !is_word(ch) && !is_space(ch); };
+        if (col > (int)s.size()) col = (int)s.size();
+        if (col > 0) col--; // start from previous
+        while (col > 0 && is_space(s[col])) col--; // skip spaces
+        if (col >= 0 && is_punct(s[col])) {
+            while (col > 0 && is_punct(s[col-1])) col--;
+        } else {
+            while (col > 0 && is_word(s[col-1])) col--; // start of word
+        }
         cx_ = col + 1; break;
     }
     case input::KEY_CTRL_SHIFT_RIGHT:
@@ -422,9 +440,17 @@ bool Editor::handle_input(int key)
         int row = cy_ - 1; if (row < 0) row = 0; int col = cx_ - 1;
         const auto& s = buffer_->lines()[row];
         auto is_word = [](char ch){ return std::isalnum((unsigned char)ch) || ch == '_'; };
+        auto is_space = [](char ch){ return std::isspace((unsigned char)ch); };
+        auto is_punct = [&](char ch){ return !is_word(ch) && !is_space(ch); };
         int n = (int)s.size();
-        while (col < n && is_word(s[col])) col++;
-        while (col < n && std::isspace((unsigned char)s[col])) col++;
+        if (col < n) {
+            if (is_word(s[col])) {
+                while (col < n && is_word(s[col])) col++;
+            } else if (is_punct(s[col])) {
+                while (col < n && is_punct(s[col])) col++;
+            }
+            while (col < n && is_space(s[col])) col++;
+        }
         cx_ = col + 1; break;
     }
     case input::KEY_CTRL_SHIFT_UP:
@@ -453,22 +479,26 @@ bool Editor::handle_input(int key)
         }
         break;
     }
-    // Clear selection when the last key was not a shift-extended navigation
-    switch (key)
-    {
-    case input::KEY_SHIFT_LEFT:
-    case input::KEY_SHIFT_RIGHT:
-    case input::KEY_SHIFT_UP:
-    case input::KEY_SHIFT_DOWN:
-    case input::KEY_CTRL_SHIFT_LEFT:
-    case input::KEY_CTRL_SHIFT_RIGHT:
-    case input::KEY_CTRL_SHIFT_UP:
-    case input::KEY_CTRL_SHIFT_DOWN:
-        break; // keep selection
-    default:
-        selecting_ = false; // clear selection
-        break;
-    }
+    // Keep selection for all navigation keys to tolerate terminals that
+    // sometimes drop Shift modifiers mid-press. Clear on non-nav actions.
+    auto is_nav_key = [&](int k){
+        switch (k) {
+            case input::KEY_LEFT: case input::KEY_RIGHT: case input::KEY_UP: case input::KEY_DOWN:
+            case input::KEY_HOME: case input::KEY_END:
+            case input::KEY_CTRL_LEFT: case input::KEY_CTRL_RIGHT:
+            case input::KEY_CTRL_UP: case input::KEY_CTRL_DOWN:
+            case input::KEY_CTRL_HOME: case input::KEY_CTRL_END:
+            case input::KEY_PAGE_UP: case input::KEY_PAGE_DOWN:
+            case input::KEY_SHIFT_LEFT: case input::KEY_SHIFT_RIGHT:
+            case input::KEY_SHIFT_UP: case input::KEY_SHIFT_DOWN:
+            case input::KEY_CTRL_SHIFT_LEFT: case input::KEY_CTRL_SHIFT_RIGHT:
+            case input::KEY_CTRL_SHIFT_UP: case input::KEY_CTRL_SHIFT_DOWN:
+            case input::KEY_UNKNOWN: // partial sequences; don't drop selection
+                return true;
+            default: return false;
+        }
+    };
+    if (!is_nav_key(key)) selecting_ = false;
     clamp_col_to_line(cy_);
     scroll();
     return true;
@@ -496,7 +526,7 @@ void Editor::start_search()
             status_.clear();
             break;
         }
-        if (k == 27) // ESC
+        if (k == 27) // ESC quit search
         {
             searching_ = false;
             status_ = "Search canceled";
@@ -504,7 +534,7 @@ void Editor::start_search()
         }
         if (k == input::KEY_BACKSPACE)
         {
-            if (!query.empty()) query.pop_back();
+            if (!query.empty()) query.pop_back(); //TODO does'nt use cursor
             search_query_ = query;
             update_search_matches();
             if (!search_matches_.empty()) { search_index_ = 0; jump_to_match(search_index_); }
@@ -515,7 +545,7 @@ void Editor::start_search()
             if (!search_matches_.empty()) {
                 int n = (int)search_matches_.size();
                 if (search_index_ < 0) search_index_ = 0;
-                search_index_ = (search_index_ - 1 + n) % n;
+                search_index_ = (search_index_ - 1 + n) % n; //Make sure n is always in range
                 jump_to_match(search_index_);
             }
             continue;
@@ -530,7 +560,7 @@ void Editor::start_search()
             }
             continue;
         }
-        if (k >= 32 && k <= 126)
+        if (k >= 32 && k <= 126) // no utf8 characters yet
         {
             query.push_back(static_cast<char>(k));
             search_query_ = query;
@@ -540,19 +570,82 @@ void Editor::start_search()
     }
 }
 
+void Editor::copy_selection_to_clipboard()
+{
+    if (!selection_active()) return;
+    int aL = anchor_cy_ - 1, aC = anchor_cx_ - 1;
+    int cL = cy_ - 1, cC = cx_ - 1;
+    if (aL > cL || (aL == cL && aC > cC)) { std::swap(aL, cL); std::swap(aC, cC); }
+    aL = std::clamp(aL, 0, (int)buffer_->line_count() - 1);
+    cL = std::clamp(cL, 0, (int)buffer_->line_count() - 1);
+    aC = std::clamp(aC, 0, (int)buffer_->line_length((size_t)aL));
+    cC = std::clamp(cC, 0, (int)buffer_->line_length((size_t)cL));
+    std::string out;
+    if (aL == cL)
+    {
+        const auto& s = buffer_->lines()[aL];
+        if (aC < cC) out.assign(s.begin() + aC, s.begin() + cC);
+        else out.clear();
+    }
+    else
+    {
+        // First line tail
+        const auto& s0 = buffer_->lines()[aL];
+        out.assign(s0.begin() + aC, s0.end());
+        out.push_back('\n');
+        // Middle full lines
+        for (int li = aL + 1; li < cL; ++li) {
+            out.append(buffer_->lines()[li]);
+            out.push_back('\n');
+        }
+        // Last line head
+        const auto& sl = buffer_->lines()[cL];
+        out.append(sl.begin(), sl.begin() + cC);
+    }
+    clipboard_ = std::move(out);
+    status_ = "Copied";
+}
+
+void Editor::paste_from_clipboard()
+{
+    if (clipboard_.empty()) { status_ = "Clipboard empty"; return; }
+    // If selection active, replace it
+    if (selection_active()) delete_selection();
+    int row = cy_ - 1;
+    int col = cx_ - 1;
+    if (row < 0) row = 0;
+    if (row >= (int)buffer_->line_count()) row = (int)buffer_->line_count() - 1;
+    if (col < 0) col = 0;
+    for (char ch : clipboard_) {
+        if (ch == '\n') {
+            buffer_->split_line((size_t)row, (size_t)col);
+            row += 1;
+            col = 0;
+            cy_ = row + 1;
+            cx_ = col + 1;
+        } else {
+            buffer_->insert_char((size_t)row, (size_t)col, ch);
+            col += 1;
+            cx_ = col + 1;
+        }
+    }
+    modified_ = true;
+    scroll();
+}
+
 void Editor::update_search_matches()
 {
     search_matches_.clear();
     search_index_ = -1;
     if (search_query_.empty()) return;
     for (int li = 0; li < (int)buffer_->line_count(); ++li)
-    {
+    {   //loop through every line
         const auto& s = buffer_->lines()[li];
         size_t pos = 0;
         while (true)
         {
-            pos = s.find(search_query_, pos);
-            if (pos == std::string::npos) break;
+            pos = s.find(search_query_, pos); //returns npos if not available
+            if (pos == std::string::npos) break; //npos -> largest value
             search_matches_.push_back(Match{li, (int)pos, (int)(pos + search_query_.size())});
             pos += (pos < s.size() ? 1 : 0);
         }

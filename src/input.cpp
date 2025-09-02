@@ -75,6 +75,8 @@ int read_key() {
                             case 'B': return KEY_CTRL_DOWN;
                             case 'C': return KEY_CTRL_RIGHT;
                             case 'D': return KEY_CTRL_LEFT;
+                            case 'H': return KEY_CTRL_HOME;
+                            case 'F': return KEY_CTRL_END;
                             default: break;
                         }
                     } else if (p2 == 2) { // Shift modifier
@@ -91,6 +93,8 @@ int read_key() {
                             case 'B': return KEY_CTRL_SHIFT_DOWN;
                             case 'C': return KEY_CTRL_SHIFT_RIGHT;
                             case 'D': return KEY_CTRL_SHIFT_LEFT;
+                            case 'H': return KEY_CTRL_HOME; // treat as extend-to-home
+                            case 'F': return KEY_CTRL_END;  // treat as extend-to-end
                             default: break;
                         }
                     }
