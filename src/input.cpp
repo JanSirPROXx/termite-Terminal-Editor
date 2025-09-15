@@ -10,7 +10,7 @@ int read_key() {
     if (c == '\r' || c == '\n') return KEY_ENTER;
     if (c == 127 || c == 8) return KEY_BACKSPACE;
     if (c != 27) { // Not an escape character, treat as normal byte
-        return c;
+        return c; //Also all CTR_a, .... normal ctrl characters
     }
     // Attempt to parse common escape sequences.
     int c1 = read_byte();

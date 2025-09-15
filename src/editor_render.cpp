@@ -16,7 +16,7 @@ namespace termite {
 void Editor::render()
 {
     screen_->clear();
-    // Header: title, version, filename and permissions (row 1)
+    //Create platform specific header with name, ans permissions
     auto perms_for = [&](const std::string& path) -> std::string {
 #ifndef _WIN32
         if (path.empty()) return std::string("(no-file)");
@@ -42,7 +42,7 @@ void Editor::render()
     int status_rows = 1;
     int max_rows = sz.rows - header_rows - status_rows; // content rows available
     if (max_rows < 1) max_rows = 1;
-    // Draw header line (centered, white background, dark blue bold text)
+    // Draw header line
     screen_->move_cursor(1, 1);
 #ifdef TERMITE_VERSION
     std::string version = TERMITE_VERSION;
@@ -201,11 +201,13 @@ void Editor::render()
         }
     }
 
-    // Status with filename, position, and modified marker
+    // Status with filename, position, modified marker, and optional debug info
     std::string fname = filename_.empty() ? std::string("(untitled)") : filename_;
     std::string mod = modified_ ? " *" : "";
     std::string pos = " Ln " + std::to_string(cy_) + ", Col " + std::to_string(cx_);
-    std::string msg = status_.empty() ? std::string("") : std::string(" | ") + status_;
+    std::string msg;
+    if (!status_.empty()) msg += std::string(" | ") + status_;
+    if (!last_key_info_.empty()) msg += std::string(" | last: ") + last_key_info_;
     screen_->draw_status(fname + mod + " |" + pos + msg);
 
     // Place cursor at current position within viewport (tab-aware)
