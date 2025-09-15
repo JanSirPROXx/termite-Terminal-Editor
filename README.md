@@ -1,6 +1,8 @@
 # Termite Text Editor
 A lightweight, terminal-based text editor built in C++ with cross-platform support. Termite provides essential text editing features with a clean, responsive interface designed for efficient coding and text manipulation.
 
+<img width="822" height="578" alt="image" src="https://github.com/user-attachments/assets/78076791-d31f-40be-a74e-22cd9530581e" />
+
 ## Features
 - Multi-line text editing with cursor navigation
 - File operations: Open, save, and save-as functionality
