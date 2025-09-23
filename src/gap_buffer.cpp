@@ -1,8 +1,7 @@
 #include "termite/gap_buffer.hpp"
 
 namespace termite {
+//not implemented yetI
 
-// Placeholder implementation; real gap buffer comes later.
-
-} // namespace termite
+} 
 

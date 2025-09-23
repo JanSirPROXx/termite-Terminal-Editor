@@ -34,7 +34,6 @@ int read_key() {
         if (c2 >= '0' && c2 <= '9') {
             int p1 = c2 - '0';
             int ch;
-            // accumulate first parameter
             while (true) {
                 ch = read_byte();
                 if (ch < 0) return KEY_UNKNOWN;
@@ -68,7 +67,6 @@ int read_key() {
                         if (ch >= '0' && ch <= '9') { p2 = p2 * 10 + (ch - '0'); continue; }
                         break;
                     }
-                    // ch should now be the final letter
                     if (p2 == 5) { // Ctrl modifier
                         switch (ch) {
                             case 'A': return KEY_CTRL_UP;
@@ -119,4 +117,4 @@ int read_key() {
     return KEY_UNKNOWN;
 }
 
-} // namespace termite::input
+}

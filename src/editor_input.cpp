@@ -109,12 +109,6 @@ namespace termite
             paste_from_clipboard();
             return true;
         }
-        // if (key == input::KEY_CTRL_G)
-        // {
-        //     debug_note("Ctrl-G");
-        //     return true;
-        // }
-        // While in search mode, Up/Down navigate results
         if (searching_ && (key == input::KEY_UP || key == input::KEY_DOWN))
         {
             if (!search_matches_.empty())
@@ -163,7 +157,6 @@ namespace termite
                 status_ = std::string("Save failed: ") + target;
             }
         }
-        // Do not quit on Ctrl+Shift+C; it's used for copy
         const auto &lines = buffer_->lines();
         auto clamp_col_to_line = [&](int y)
         {
@@ -178,7 +171,6 @@ namespace termite
 
         switch (key)
         {
-        // While in search mode, use arrows to navigate matches
         case input::KEY_UP:
             if (cy_ > 1)
                 cy_--;
@@ -284,7 +276,6 @@ namespace termite
         }
         case input::KEY_DELETE:
         {
-            // If selection is active, delete it, then also delete the char at the new cursor
             if (selection_active())
             {
                 delete_selection();
@@ -348,28 +339,24 @@ namespace termite
             if ((size_t)col == s.size() && cy_ < (int)buffer_->line_count())
             {
                 ++cy_;
-                cx_ = 1; // Changed from 0 to 1 (1-based positioning)
+                cx_ = 1;
                 break;
             }
 
             auto is_word = [](char ch)
             { return std::isalnum((signed char)ch) || ch == '_'; };
             int n = (int)s.size();
-            // Skip current word/token first
             if (col < n && is_word(s[col]))
             {
-                // Currently on a word character, skip to end of word
                 while (col < n && is_word(s[col]))
                     col++;
             }
             else if (col < n && !std::isspace((signed char)s[col]))
             {
-                // Currently on punctuation, skip to end of punctuation
                 while (col < n && !is_word(s[col]) && !std::isspace((signed char)s[col]))
                     col++;
             }
 
-            // Skip any whitespace to get to next token
             while (col < n && std::isspace((signed char)s[col]))
                 col++;
             cx_ = col + 1;
@@ -520,7 +507,6 @@ namespace termite
         {
 
             debug_note("Ctrl-G");
-            // add Pressed KEy_CTRL_G to status on the left
 
             // Jump to closest parenthesis on the right of the cursor in current line
             int col = cx_ - 1;
@@ -554,7 +540,6 @@ namespace termite
                 cy_ = (int)lines.size();
             break;
         default:
-            // Insert printable ASCII and tab
             if ((key >= 32 && key <= 126) || key == '\t')
             {
                 if (selection_active())
@@ -575,8 +560,6 @@ namespace termite
             }
             break;
         }
-        // Keep selection for all navigation keys to tolerate terminals that
-        // sometimes drop Shift modifiers mid-press. Clear on non-nav actions.
         auto is_nav_key = [&](int k)
         {
             switch (k)
@@ -665,7 +648,7 @@ namespace termite
                     int n = (int)search_matches_.size();
                     if (search_index_ < 0)
                         search_index_ = 0;
-                    search_index_ = (search_index_ - 1 + n) % n; // Make sure n is always in range
+                    search_index_ = (search_index_ - 1 + n) % n;
                     jump_to_match(search_index_);
                 }
                 continue;
@@ -722,17 +705,14 @@ namespace termite
         }
         else
         {
-            // First line tail
             const auto &s0 = buffer_->lines()[aL];
             out.assign(s0.begin() + aC, s0.end());
             out.push_back('\n');
-            // Middle full lines
             for (int li = aL + 1; li < cL; ++li)
             {
                 out.append(buffer_->lines()[li]);
                 out.push_back('\n');
             }
-            // Last line head
             const auto &sl = buffer_->lines()[cL];
             out.append(sl.begin(), sl.begin() + cC);
         }
@@ -747,7 +727,6 @@ namespace termite
             status_ = "Clipboard empty";
             return;
         }
-        // If selection active, replace it
         if (selection_active())
             delete_selection();
         int row = cy_ - 1;
@@ -782,7 +761,6 @@ namespace termite
     void Editor::debug_note(const std::string &note)
     {
         last_key_info_ = note;
-        // Do not clear status_; render will append last_key_info_ after status
     }
 
     void Editor::update_search_matches()
@@ -826,4 +804,4 @@ namespace termite
         scroll();
     }
 
-} // namespace termite
+}

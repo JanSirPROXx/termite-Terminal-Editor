@@ -1,4 +1,3 @@
-// Core editor setup and plumbing
 #include "termite/editor.hpp"
 #include "termite/screen.hpp"
 #include "termite/buffer.hpp"
@@ -95,5 +94,5 @@ void Editor::scroll() {
     }
 }
 
-} // namespace termite
+}
 

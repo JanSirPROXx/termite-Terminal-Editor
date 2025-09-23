@@ -16,7 +16,6 @@ namespace termite {
 void Editor::render()
 {
     screen_->clear();
-    //Create platform specific header with name, ans permissions
     auto perms_for = [&](const std::string& path) -> std::string {
 #ifndef _WIN32
         if (path.empty()) return std::string("(no-file)");
@@ -40,7 +39,7 @@ void Editor::render()
     auto sz = screen_->size();
     int header_rows = 1;
     int status_rows = 1;
-    int max_rows = sz.rows - header_rows - status_rows; // content rows available
+    int max_rows = sz.rows - header_rows - status_rows;
     if (max_rows < 1) max_rows = 1;
     // Draw header line
     screen_->move_cursor(1, 1);
@@ -55,20 +54,16 @@ void Editor::render()
     if ((int)header.size() > cols) header.resize(cols);
     int pad_left = 0;
     if (cols > 0) pad_left = std::max(0, (cols - (int)header.size()) / 2);
-    // Style: white background (15), dark blue fg (18), bold
     std::string style = ansi::bg_color256(15) + ansi::color256(18) + ansi::BOLD;
     screen_->write(style);
-    // Fill full line to ensure solid background
     screen_->write(std::string(cols, ' '));
-    // Write centered header text
     screen_->move_cursor(1, pad_left + 1);
     screen_->write(header);
     screen_->write(ansi::RESET);
 
-    // Draw file lines with vertical + horizontal scrolling + selection/search highlight
     int max_cols = sz.cols;
     const auto &lines = buffer_->lines();
-    auto digits = [](int n){ int d = 1; while (n >= 10) { n /= 10; ++d; } return d; };
+    auto digits = [](int n){ int d = 1; while (n >= 10) { n /= 10; ++d; } return d; }; //calculate nr of digits in pos int to allocate mem
     int lnw = std::max(4, digits((int)lines.size())); // gutter width (at least 4)
     int prefix_cols = lnw + 2; // number + space + '|'
     auto disp_col = [](const std::string& s, int char_col, int tabw) {
@@ -111,22 +106,22 @@ void Editor::render()
             int lineno = file_row + 1;
             std::string num = std::to_string(lineno);
             if ((int)num.size() < lnw) num.insert(num.begin(), lnw - (int)num.size(), ' ');
-            screen_->write(ansi::color256(245));
+            screen_->write(ansi::color256(57)); //Color for row nr's grey: 245
             screen_->write(num);
             screen_->write(" ");
             screen_->write(ansi::RESET);
             screen_->write("|");
 
             const std::string &line = lines[file_row];
-            // Content area starts after gutter
             int text_cols = std::max(0, max_cols - prefix_cols);
             screen_->move_cursor(i + 1 + header_rows, lnw + 3);
             std::string rendered = expand_tabs(line, TAB_W);
             if (text_cols > 0 && col_off_ < (int)rendered.size()) {
+                //string_view to render
                 std::string_view vis(rendered.c_str() + col_off_, rendered.size() - col_off_);
                 if ((int)vis.size() > text_cols) vis = vis.substr(0, text_cols);
 
-                bool has_sel = selecting_;
+                bool has_sel = selecting_; //selection/ highlighting bool
                 if (has_sel) {
                     int aL = anchor_cy_ - 1, aC = anchor_cx_ - 1;
                     int cL = cy_ - 1, cC = cx_ - 1;
@@ -135,7 +130,7 @@ void Editor::render()
                         has_sel = false;
                     } else {
                         int line_len = (int)line.size();
-                        int s = 0, e = line_len; // selection [s,e) on this line (char indices)
+                        int s = 0, e = line_len;
                         if (aL == cL) { s = std::clamp(aC, 0, line_len); e = std::clamp(cC, 0, line_len); }
                         else if (file_row == aL) { s = std::clamp(aC, 0, line_len); e = line_len; }
                         else if (file_row == cL) { s = 0; e = std::clamp(cC, 0, line_len); }
@@ -160,9 +155,8 @@ void Editor::render()
                         continue;
                     }
                 }
-                // If not selecting, draw search highlights (yellow background)
+
                 if (!has_sel && !search_query_.empty() && !search_matches_.empty()) {
-                    // Collect match spans on this line in display columns
                     std::vector<std::pair<int,int>> spans;
                     for (const auto& m : search_matches_) {
                         if (m.line != file_row) continue;
@@ -174,7 +168,6 @@ void Editor::render()
                         int he = std::clamp(e_disp, vis_start, vis_end);
                         if (he > hs) spans.emplace_back(hs - vis_start, he - vis_start);
                     }
-                    // Merge overlapping spans
                     std::sort(spans.begin(), spans.end());
                     std::vector<std::pair<int,int>> merged;
                     for (auto& sp : spans) {
@@ -184,14 +177,16 @@ void Editor::render()
                     int pos = 0;
                     for (auto& sp : merged) {
                         if (sp.first > pos) screen_->write(std::string(vis.substr(pos, sp.first - pos)));
-                        screen_->write(ansi::bg_color256(11));
+                        screen_->write(ansi::bg_color256(11)); //yellow
                         screen_->write(std::string(vis.substr(sp.first, sp.second - sp.first)));
                         screen_->write(ansi::RESET);
                         pos = sp.second;
                     }
                     if (pos < (int)vis.size()) screen_->write(std::string(vis.substr(pos)));
                 } else {
+                    screen_->write(ansi::color256(51));
                     screen_->write(std::string(vis));
+                    screen_->write(ansi::RESET);
                 }
             }
         } else {
@@ -201,7 +196,6 @@ void Editor::render()
         }
     }
 
-    // Status with filename, position, modified marker, and optional debug info
     std::string fname = filename_.empty() ? std::string("(untitled)") : filename_;
     std::string mod = modified_ ? " *" : "";
     std::string pos = " Ln " + std::to_string(cy_) + ", Col " + std::to_string(cx_);
@@ -210,7 +204,6 @@ void Editor::render()
     if (!last_key_info_.empty()) msg += std::string(" | last: ") + last_key_info_;
     screen_->draw_status(fname + mod + " |" + pos + msg);
 
-    // Place cursor at current position within viewport (tab-aware)
     int screen_row = header_rows + (cy_ - row_off_);
     if (screen_row < 1 + header_rows)
         screen_row = 1 + header_rows;
@@ -231,4 +224,4 @@ void Editor::render()
     screen_->flush();
 }
 
-} // namespace termite
+}

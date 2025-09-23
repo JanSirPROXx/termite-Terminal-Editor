@@ -14,7 +14,8 @@ void Buffer::set_contents(std::string text) {
     std::stringstream ss(std::move(text));
     std::string line;
     while (std::getline(ss, line)) {
-        // Keep line endings normalized; std::getline strips '\n'
+        // Keep line endings normalized; 
+        //std::getline strips '\n'
         lines_.push_back(line);
     }
     if (lines_.empty()) lines_.push_back(""); // Ensure there is always at least one line
@@ -58,4 +59,4 @@ void Buffer::delete_line(size_t row) {
     lines_.erase(lines_.begin() + static_cast<std::ptrdiff_t>(row));
 }
 
-} // namespace termite
+}
