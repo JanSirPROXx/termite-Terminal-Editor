@@ -2,6 +2,7 @@
 
 #include "termite/ansi.hpp"
 #include "termite/platform.hpp"
+#include "termite/debug.hpp"
 
 #include <cstdio>
 
@@ -94,6 +95,64 @@ namespace termite
             write(lines[i]);
             write(ansi::RESET);
         }
+    }
+
+    void Screen::write_with_syntax_highlighting(const std::vector<SyntaxHighlight>& highlights,
+                                            const std::string& text)
+    {
+        // std::fwrite(s.c_str(), 1, s.size(), stdout);
+        //print highlights
+
+        if (highlights.empty())
+        {
+            write(ansi::color256(51));
+            write(text);
+            return;
+        }
+
+
+        for (const auto& highlight : highlights)
+        {
+            add_debug_line("H: " + std::to_string(static_cast<int>(highlight.type)) + " [" + std::to_string(highlight.start) + ", " + std::to_string(highlight.end) + "]");
+            if (highlight.type == SyntaxHighlight::Type::Normal)
+            {
+                write(text.substr(highlight.start, highlight.end - highlight.start));
+            }
+            else if (highlight.type == SyntaxHighlight::Type::Keyword)
+            {
+                write(ansi::color256(33)); //blue
+                write(text.substr(highlight.start, highlight.end - highlight.start));
+                write(ansi::RESET);
+            }
+            else if (highlight.type == SyntaxHighlight::Type::String)
+            {
+                write(ansi::color256(34)); //green
+                write(text.substr(highlight.start, highlight.end - highlight.start));
+                write(ansi::RESET);
+            }
+            else if (highlight.type == SyntaxHighlight::Type::Comment)
+            {
+                write(ansi::color256(244)); //grey
+                write(text.substr(highlight.start, highlight.end - highlight.start));
+                write(ansi::RESET);
+            }
+            else if (highlight.type == SyntaxHighlight::Type::Number)
+            {
+                write(ansi::color256(166)); //orange
+                write(text.substr(highlight.start, highlight.end - highlight.start));
+                write(ansi::RESET);
+            }
+            else if (highlight.type == SyntaxHighlight::Type::Match)
+            {
+                write(ansi::bg_color256(226)); //yellow background
+                write(ansi::color256(16));     //black text
+                write(text.substr(highlight.start, highlight.end - highlight.start));
+                write(ansi::RESET);
+            }
+            else
+            write(text.substr(highlight.start, highlight.end - highlight.start));
+        }
+
     }
 
     Size Screen::size() const

@@ -4,6 +4,7 @@
 #include "termite/buffer.hpp"
 #include "termite/ansi.hpp"
 #include "termite/debug.hpp"
+#include "termite/syntax.hpp"
 
 #include <algorithm>
 #include <string>
@@ -225,8 +226,6 @@ namespace termite
                         }
                     }
 
-                    //syntax highlighting
-
                     if (!has_sel && !search_query_.empty() && !search_matches_.empty())
                     {
                         std::vector<std::pair<int, int>> spans;
@@ -261,9 +260,18 @@ namespace termite
                     }
                     else
                     {
-                        screen_->write(ansi::color256(51));
-                        screen_->write(std::string(vis));
-                        screen_->write(ansi::RESET);
+
+
+                        // screen_->write(ansi::color256(51));
+                        // screen_->write(std::string(vis));
+                        // screen_->write(ansi::RESET);
+
+                        // implement the syntax highlighting rendering here
+                        std::vector<SyntaxHighlight> highlights = get_syntax_highlights(line);
+
+                        //is Block commented (only support c++ syntax)
+                        screen_->write_with_syntax_highlighting(highlights, std::string(vis));
+
                     }
                 }
             }
