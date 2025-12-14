@@ -156,6 +156,8 @@ void Editor::render()
                     }
                 }
 
+                //syntax highlighting
+
                 if (!has_sel && !search_query_.empty() && !search_matches_.empty()) {
                     std::vector<std::pair<int,int>> spans;
                     for (const auto& m : search_matches_) {
