@@ -1,4 +1,4 @@
-Cannot generate into /Users/janbichsel/CLionProjects/termite-Terminal-Editor
-It is already used for project /home/lance/Documents/coding/termite
-
-Please either delete it manually or select another generation directory
+/Users/janbichsel/Applications/CLion.app/Contents/bin/cmake/mac/aarch64/bin/cmake -DCMAKE_MAKE_PROGRAM=/Users/janbichsel/Applications/CLion.app/Contents/bin/ninja/mac/aarch64/ninja -G Ninja -S /Users/janbichsel/CLionProjects/termite-Terminal-Editor -B /Users/janbichsel/CLionProjects/termite-Terminal-Editor
+-- Configuring done (0.1s)
+-- Generating done (0.0s)
+-- Build files have been written to: /Users/janbichsel/CLionProjects/termite-Terminal-Editor

@@ -99,6 +99,10 @@ namespace termite
 
     bool Editor::handle_input(int key)
     {
+        //Add different modes: normal mode, insert mode, command mode, visual mode (like vim)
+
+        //GO to normalmode using ESC
+
         if (key == input::KEY_CTRL_F)
         {
             start_search();

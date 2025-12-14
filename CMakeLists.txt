@@ -18,6 +18,8 @@ set(TERMITE_SOURCES
     src/screen.cpp
     src/input.cpp
     src/file_io.cpp
+    src/syntax.cpp
+    src/debug.cpp
 )
 
 # Platform-specific source
@@ -44,5 +46,5 @@ endif()
 
 if(UNIX AND NOT APPLE)
     # Link against termcap-like libraries if needed; commonly not necessary for raw termios
-    # target_link_libraries(termite PRIVATE tinfo ncurses)
+    # target_link_libraries(termite PRIVATE tinfo ncurses
 endif()

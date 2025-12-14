@@ -11,7 +11,7 @@ public:
 
     void set_contents(std::string text);
     const std::vector<std::string>& lines() const { return lines_; }
-    const std::vector<std::size_t>& syntaxLines() const {return syntaxLines_;} 
+    const std::vector<std::string>& syntaxLines() const { return syntaxLines_; }
 
     size_t line_count() const { return lines_.size(); }
     size_t line_length(size_t row) const { return row < lines_.size() ? lines_[row].size() : 0; }

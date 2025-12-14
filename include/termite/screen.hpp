@@ -1,6 +1,7 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
 namespace termite {
 
@@ -17,6 +18,7 @@ public:
     void flush();
     void draw_status(const std::string& status);
     void draw_line_numbers(std::size_t line_size);
+    void draw_debug_window(const std::vector<std::string>& lines);
     Size size() const;
 };
 
