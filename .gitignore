@@ -1,6 +1,5 @@
 build/*
 Makefile
-termite
 test.txt
 grep
 clipboard
