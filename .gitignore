@@ -3,4 +3,6 @@ Makefile
 test.txt
 grep
 clipboard
+CMakeCache.txt
+cmake_install.cmake
 

@@ -8,16 +8,16 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/lance/Documents/coding/termite/src/buffer.cpp" "CMakeFiles/termite.dir/src/buffer.cpp.o" "gcc" "CMakeFiles/termite.dir/src/buffer.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/editor.cpp" "CMakeFiles/termite.dir/src/editor.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/editor_input.cpp" "CMakeFiles/termite.dir/src/editor_input.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor_input.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/editor_render.cpp" "CMakeFiles/termite.dir/src/editor_render.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor_render.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/file_io.cpp" "CMakeFiles/termite.dir/src/file_io.cpp.o" "gcc" "CMakeFiles/termite.dir/src/file_io.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/gap_buffer.cpp" "CMakeFiles/termite.dir/src/gap_buffer.cpp.o" "gcc" "CMakeFiles/termite.dir/src/gap_buffer.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/input.cpp" "CMakeFiles/termite.dir/src/input.cpp.o" "gcc" "CMakeFiles/termite.dir/src/input.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/main.cpp" "CMakeFiles/termite.dir/src/main.cpp.o" "gcc" "CMakeFiles/termite.dir/src/main.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/platform_posix.cpp" "CMakeFiles/termite.dir/src/platform_posix.cpp.o" "gcc" "CMakeFiles/termite.dir/src/platform_posix.cpp.o.d"
-  "/home/lance/Documents/coding/termite/src/screen.cpp" "CMakeFiles/termite.dir/src/screen.cpp.o" "gcc" "CMakeFiles/termite.dir/src/screen.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/buffer.cpp" "CMakeFiles/termite.dir/src/buffer.cpp.o" "gcc" "CMakeFiles/termite.dir/src/buffer.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/editor.cpp" "CMakeFiles/termite.dir/src/editor.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/editor_input.cpp" "CMakeFiles/termite.dir/src/editor_input.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor_input.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/editor_render.cpp" "CMakeFiles/termite.dir/src/editor_render.cpp.o" "gcc" "CMakeFiles/termite.dir/src/editor_render.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/file_io.cpp" "CMakeFiles/termite.dir/src/file_io.cpp.o" "gcc" "CMakeFiles/termite.dir/src/file_io.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/gap_buffer.cpp" "CMakeFiles/termite.dir/src/gap_buffer.cpp.o" "gcc" "CMakeFiles/termite.dir/src/gap_buffer.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/input.cpp" "CMakeFiles/termite.dir/src/input.cpp.o" "gcc" "CMakeFiles/termite.dir/src/input.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/main.cpp" "CMakeFiles/termite.dir/src/main.cpp.o" "gcc" "CMakeFiles/termite.dir/src/main.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/platform_posix.cpp" "CMakeFiles/termite.dir/src/platform_posix.cpp.o" "gcc" "CMakeFiles/termite.dir/src/platform_posix.cpp.o.d"
+  "/Users/janbichsel/CLionProjects/termite-Terminal-Editor/src/screen.cpp" "CMakeFiles/termite.dir/src/screen.cpp.o" "gcc" "CMakeFiles/termite.dir/src/screen.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.
